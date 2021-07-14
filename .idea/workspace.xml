@@ -16,20 +16,7 @@
       <change afterPath="$PROJECT_DIR$/../project-ezakharian-main/.idea/modules.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../project-ezakharian-main/.idea/vcs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../project-ezakharian-main/SearchEngine.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ArgumentMap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ConcurrentInvertedIndex.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ConcurrentInvertedIndexBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Driver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/InvertedIndex.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/InvertedIndexBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SimpleJsonWriter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SimpleLock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SimpleReadWriteLock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TextFileFinder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TextFileStemmer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TextParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WebCrawler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WorkQueue.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../snowflake/snowflake.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,7 +32,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1vIMOTRXeJoJ4mwBNqwh11FA7t3" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
