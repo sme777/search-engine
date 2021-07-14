@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1615945d-bee3-46a2-91ee-a9a718d771e5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../2D Arrays/2d Arrays.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Codebase/works/ForRoberto/ForRoberto.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Codebase/works/SandShip/SandShip.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Codebase/works/loto2020/loto2020.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Generics/Generics.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Gens/Gens.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hackerrank/hackerrank.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lab6/lab6.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../project-ezakharian-main/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../project-ezakharian-main/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../project-ezakharian-main/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../project-ezakharian-main/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../project-ezakharian-main/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../project-ezakharian-main/SearchEngine.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ArgumentMap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ConcurrentInvertedIndex.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ConcurrentInvertedIndexBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Driver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/InvertedIndex.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/InvertedIndexBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SimpleJsonWriter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SimpleLock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SimpleReadWriteLock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TextFileFinder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TextFileStemmer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TextParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WebCrawler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WorkQueue.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../snowflake/snowflake.iml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1vIMOTRXeJoJ4mwBNqwh11FA7t3" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1615945d-bee3-46a2-91ee-a9a718d771e5" name="Default Changelist" comment="" />
+      <created>1626245123055</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1626245123055</updated>
+    </task>
+    <servers />
+  </component>
+</project>
