@@ -304,8 +304,6 @@ public class InvertedIndex {
 
     /**
      * Result of searching a specific query
-     *
-     * @author dudesqueak
      */
     public class SearchResult implements Comparable<SearchResult> {
 

@@ -1,38 +1,39 @@
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author sme777
+ * @author sme7777
  * @author Samson Petrosyan
- *
  */
 public class WebCrawler {
     /**
-     * multi thread inverted index
+     * Multi thread inverted index
      */
     private final ConcurrentInvertedIndex index;
 
     /**
-     * worker queue for web crawler
+     * Worker queue for web crawler
      */
     private final WorkQueue queue;
 
     /**
-     * number of redirect limits
+     * Number of redirect limits
      */
     private final int redirectLimit;
 
     /**
-     * list of visited URLs
+     * List of visited URLs
      */
-    private HashSet<URL> visitedLinks;
+    private final HashSet<URL> visitedLinks;
 
     /**
-     * constructor for web crawler
+     * Constructor for web crawler
      *
      * @param index given inverted index
      * @param queue given worker queue
@@ -41,125 +42,72 @@ public class WebCrawler {
     public WebCrawler(ConcurrentInvertedIndex index, WorkQueue queue, int redirectLimit) {
         this.index = index;
         this.queue = queue;
-        this.redirectLimit = redirectLimit;//max num of links to process
+        this.redirectLimit = redirectLimit;
         this.visitedLinks = new HashSet<>();
     }
 
     /**
-     * builds an inverted index from a specified url
+     * Crawls the web and make an inverted index
      *
-     * @param url given URL
-     * @throws MalformedURLException throws an MalformedURLException if improper URL
+     * @param seed provided url
      */
-    public void buildFromURL(URL url) throws MalformedURLException {
-        String htmlContents = HtmlFetcher.fetch(url, 3);
-        if(htmlContents == null) {
-            return;
+    public void crawl(URL seed) {
+        synchronized (visitedLinks) {
+            visitedLinks.add(seed);
         }
-        htmlContents = HtmlCleaner.stripBlockElements(htmlContents);
-        ArrayList<URL> parsedURLs = LinkParser.getValidLinks(url, htmlContents);
-        htmlContents = HtmlCleaner.stripHtml(htmlContents);
-        //System.out.println(htmlContents);
-        //System.out.println(htmlContents);
-        //Pattern pattern = Pattern.compile("href=[\"'](.*?)[\"']"); //look at linkparser!
-        //Matcher matcher = pattern.matcher(htmlContents);
-
-
-        crawl(url, htmlContents);
-        for(URL newURL: parsedURLs) {
-            if(visitedLinks.contains(newURL)) {
-                continue;
-            }
-            if(visitedLinks.size() >= redirectLimit) {
-                break;
-            }
-            buildFromURL(newURL);
-        }
+        queue.execute(new Crawler(seed));
     }
-
     /**
-     * @param url
-     * @param path
-     * @return
-     * @throws MalformedURLException
+     * An inner class for Crawler task
      */
-    private URL makeURL(String url, String path) throws MalformedURLException{
-        Pattern pattern = Pattern.compile("http.*\\/"); //dont need regex
-        Pattern pattern2 = Pattern.compile("(.*)#");
-        Matcher matcher = pattern.matcher(url);
-        Matcher matcher2 = pattern2.matcher(path);
-        if(matcher.find()) {
-            String cleanURL = matcher.group();
-            if(matcher2.find()) {
-                String cleanPath = matcher2.group(1);
-                //System.out.println(path);
-                //System.out.println(cleanPath);
-                return new URL(cleanURL + cleanPath);
-            }
-            return new URL(cleanURL + path);
-        }
-        return null;
-    }
-
-    /**
-     * executes a worker for a given URL
-     *
-     * @param url given URL
-     * @param htmlContents
-     */
-    public void crawl(URL url, String htmlContents) {
-        //visitedLinks.add(url); //need to add links here before calling run()
-        queue.execute(new Crawler(url, htmlContents));
-    }
-
-    /**
-     * @author dudesqueak
-     *
-     */
-    private class Crawler implements Runnable{
+    private class Crawler implements Runnable {
         /**
-         *
+         * Provided Worker url seed
          */
-        private URL url;
-
+        private final URL seed;
         /**
-         *
+         * A list of fetched URLs
          */
-        private String htmlContents;
+        private ArrayList<URL> urls;
 
-        /**
-         *
-         */
-        private InvertedIndex localIndex;
-
-        /**
-         * @param url
-         * @param htmlContents
-         */
-        private Crawler(URL url, String htmlContents) {
-            this.url = url;
-            this.localIndex = new InvertedIndex();
-            this.htmlContents = htmlContents;
+        private Crawler(URL seed) {
+            this.seed = seed;
+            urls = new ArrayList<>();
         }
 
         @Override
-        public void run() { //alot of the work should be done here; this should benefit for multi thread when downloading web pages
-            //System.out.println("gets here!");
-            synchronized(visitedLinks) {
-                if(visitedLinks.contains(url) || visitedLinks.size() >= redirectLimit) {
-                    System.out.println(visitedLinks.size());
-                    return;
-                } else {
-                    visitedLinks.add(url);
+        public void run() {
+            try {
+                String html = HttpsFetcher.fetchURL(seed).toString();
+                if (html != null) {
+                    synchronized (visitedLinks) {
+                        urls = LinkParser.getValidLinks(seed, html);
+                        for (URL link : urls) {
+                            if (visitedLinks.size() == redirectLimit) {
+                                break;
+                            }
+                            if (!visitedLinks.contains(link)) {
+                                visitedLinks.add(link);
+                                queue.execute(new Crawler(link));
+                            }
+                        }
+                    }
+                    String cleanedHTML = HtmlCleaner.stripHtml(html);
+                    ArrayList<String> words = TextFileStemmer.listStems(cleanedHTML);
+                    InvertedIndex local = new InvertedIndex();
+                    local.addAll(words, seed.toString(), 1);
+                    index.addAll(local);
                 }
+
+            } catch (UnknownHostException e) {
+                System.out.println("UnknownHostException in Crawler.run()");
+            } catch (MalformedURLException e) {
+                System.out.println("MalformedURLException in Crawler.run()");
+            } catch (IOException e) {
+                System.out.println("IOException in Crawler.run()");
             }
-            //System.out.println("sfsv");
-            ArrayList<String> htmlStemmed = TextFileStemmer.listStems(htmlContents);
-            //System.out.println(htmlStemmed);
-            localIndex.addAll(htmlStemmed, url.toString(), 1);
-            index.addAll(localIndex);
+
         }
 
     }
-
 }

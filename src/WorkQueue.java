@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
  *      Theory and Practice: Thread Pools and Work Queues</a>
  *
  * @author sme777
+ * @author sme777
  * @author Samson Petrosyan
  */
 public class WorkQueue {

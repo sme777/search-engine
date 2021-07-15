@@ -109,7 +109,7 @@ public class Driver {
                 int numURL = map.getInteger("-max", 1);
                 WebCrawler crawler = new WebCrawler((ConcurrentInvertedIndex) index, queue, numURL);
                 URL urlNew = new URL(seed);
-                crawler.buildFromURL(urlNew);
+                crawler.crawl(urlNew);
                 queue.finish();
             } catch (MalformedURLException e){
                 System.out.println("Given URI is malformed!");
@@ -154,9 +154,6 @@ public class Driver {
 
     /**
      * Enum for types of outputs to JSON files
-     *
-     * @author dudesqueak
-     *
      */
     private enum Type {
         /**
